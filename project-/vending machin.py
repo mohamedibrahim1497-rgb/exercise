@@ -1,4 +1,4 @@
-#
+#print the main menu first
 print("Welcome to my vending machine")
 print("code      item       price      stock")
 print(" [112]     pepsi        $2         4     ")
@@ -24,20 +24,23 @@ water_stock = 8
 
 #insert money command and stock availibiltyb command:
 
-def purchase_item(item,price, stock) :
+def purchase_item(item, price, stock):
     if stock > 0:
-        print(f"You chose {item} . please insert ${price}.")
+        print(f"You chose {item}. Please insert ${price}.")
         money_inserted = float(input())
+
         if money_inserted >= price:
             stock -= 1
             print(f"Here is your {item}. Enjoy!")
             if money_inserted > price:
                 print(f"Here is your change: ${money_inserted - price}")
-            else:
-                print("Insufficient money . please try again.")
         else:
-          print(f"Sorry, {item} is out of stock")
-          return stock
+            print("Insufficient money. Please try again.")
+    else:
+        print(f"Sorry, {item} is out of stock")
+
+    return stock
+
 while True:
 
     #ask the user to selct a code
@@ -60,7 +63,12 @@ while True:
     else:
         print("Invalid code. please try agin.")
         continue
-    again = input("Would you like to but another item?  (Yes/No:)").strip().lower()
-    if again != "yse":
-        print("Thank you for using my vnding machine! Goodbye!")
+
+
+    again = input("Would you like to buy another item? (Yes/No): ").strip().lower()
+
+    if again == "yes":
+        continue
+    else:
+        print("Thank you for using my vending machine! Goodbye!")
         break
